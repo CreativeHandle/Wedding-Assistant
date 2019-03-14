@@ -6,7 +6,7 @@ public class UserEvents {
     public UserEvents(){
     }
 
-    public UserEvents(String eventName) {
+    public UserEvents(String eventName){
         this.eventName = eventName;
     }
 }
