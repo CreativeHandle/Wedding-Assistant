@@ -69,7 +69,6 @@ public class UserRegister extends AppCompatActivity {
                                     sendToDatabase(task.getResult().
                                                     getUser().getUid(),
                                             email_string,
-                                            password_string,
                                             firstName_string,
                                             lastName_string);
                                     //SHOW SUCCESS
@@ -88,10 +87,9 @@ public class UserRegister extends AppCompatActivity {
     //SEND TO DATABASE
     private void sendToDatabase(String id,
                                 String email,
-                                String password,
                                 String firstName,
                                 String lastName){
-        Users user = new Users(email,password,firstName,lastName);
+        Users user = new Users(email,firstName,lastName,"client");
         userRegistration.child("users").child(id).setValue(user);
     }
 
