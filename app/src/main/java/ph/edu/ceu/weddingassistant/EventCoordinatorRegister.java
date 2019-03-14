@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -17,41 +16,34 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import ph.edu.ceu.weddingassistant.models.Users;
 
-public class UserRegister extends AppCompatActivity {
+public class EventCoordinatorRegister extends AppCompatActivity {
 
     EditText email,password,confirm_password,firstName,lastName;
     Button submit;
     DatabaseReference userRegistration = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_register);
-        //Firebase auth
-        mAuth = FirebaseAuth.getInstance();
+        setContentView(R.layout.activity_event_coordinator_register);
         //EDIT TEXT
-        email = (EditText) findViewById(R.id.txt_user_register_email);
-        password = (EditText) findViewById(R.id.txt_user_register_password);
-        confirm_password = (EditText) findViewById(R.id.txt_user_register_confirm_password);
-        firstName = (EditText) findViewById(R.id.txt_user_register_first_name);
-        lastName = (EditText) findViewById(R.id.txt_user_register_last_name);
-        //Button
+        email = (EditText) findViewById(R.id.txt_coordinator_register_email);
+        password = (EditText) findViewById(R.id.txt_coordinator_register_password);
+        confirm_password = (EditText) findViewById(R.id.txt_coordinator_register_confirm_password);
+        firstName = (EditText) findViewById(R.id.txt_coordinator_register_first_name);
+        lastName = (EditText) findViewById(R.id.txt_coordinator_register_last_name);
+        //BUTTON
         submit = (Button) findViewById(R.id.btn_user_register_submit);
-        //Onclick
+        //ON CLICK
         onSubmitClick(submit,email,password,confirm_password,firstName,lastName);
-
     }
 
-    //SUBMIT CLICK
     private void onSubmitClick(Button submit,
                                final EditText email,
                                final EditText password,
                                final EditText confirm_password,
                                final EditText firstName,
                                final EditText lastName){
-
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,8 +77,6 @@ public class UserRegister extends AppCompatActivity {
             }
         });
     }
-
-    //SEND TO DATABASE
     private void sendToDatabase(String id,
                                 String email,
                                 String firstName,
@@ -94,5 +84,4 @@ public class UserRegister extends AppCompatActivity {
         Users user = new Users(email,firstName,lastName,"client");
         userRegistration.child("users").child(id).setValue(user);
     }
-
 }
