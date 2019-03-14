@@ -65,12 +65,19 @@ public class UserRegister extends AppCompatActivity {
                         addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                sendToDatabase(task.getResult().
-                                        getUser().getUid(),
-                                        email_string,
-                                        password_string,
-                                        firstName_string,
-                                        lastName_string);
+                                if(task.isSuccessful()){
+                                    sendToDatabase(task.getResult().
+                                                    getUser().getUid(),
+                                            email_string,
+                                            password_string,
+                                            firstName_string,
+                                            lastName_string);
+                                    //SHOW SUCCESS
+                                }
+                                else {
+                                    //SEND ERROR MESSAGE
+                                }
+
                             }
                         });
 
