@@ -68,11 +68,6 @@ public class UserRegister extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    sendToDatabase(task.getResult().
-                                                    getUser().getUid(),
-                                            email_string,
-                                            firstName_string,
-                                            lastName_string);
                                     //SHOW SUCCESS
                                 }
                                 else {
@@ -89,9 +84,9 @@ public class UserRegister extends AppCompatActivity {
     //SEND TO DATABASE
     private void sendToDatabase(String id,
                                 String email,
-                                String firstName,
-                                String lastName){
-        Users user = new Users(email,firstName,lastName,"client");
+                                String name,
+                                String contactNumber){
+        Users user = new Users(email,name,"client",contactNumber);
         userRegistration.child("users").child(id).setValue(user);
     }
 

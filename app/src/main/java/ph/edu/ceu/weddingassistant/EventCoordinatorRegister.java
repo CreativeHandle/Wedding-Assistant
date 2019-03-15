@@ -79,9 +79,9 @@ public class EventCoordinatorRegister extends AppCompatActivity {
     }
     private void sendToDatabase(String id,
                                 String email,
-                                String firstName,
-                                String lastName){
-        Users user = new Users(email,firstName,lastName,"client");
+                                String name,
+                                String contactNumber){
+        Users user = new Users(email,name,"client",contactNumber);
         userRegistration.child("users").child(id).setValue(user);
     }
 }
