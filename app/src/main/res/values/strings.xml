@@ -16,5 +16,10 @@
     <string name="btn_guest">GUEST ACCESS</string>
     <string name="btn_forgot_password">Forgot your password?</string>
     <string name="btn_link_to_register">Not a member? Register now!</string>
+    <string name="phone">Phone number</string>
+    <string name="email">E-mail address</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_link_to_login">LOGIN</string>
+    <string name="name">Full Name</string>
 
 </resources>

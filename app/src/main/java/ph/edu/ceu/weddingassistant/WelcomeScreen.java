@@ -18,6 +18,7 @@ public class WelcomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
 
         auth = FirebaseAuth.getInstance();
 
@@ -26,7 +27,7 @@ public class WelcomeScreen extends AppCompatActivity {
             finish();
         }
 
-        setContentView(R.layout.activity_welcome);
+
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnSignup = (Button) findViewById(R.id.btn_signup);
@@ -38,7 +39,7 @@ public class WelcomeScreen extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WelcomeScreen.this, CalendarActivity.class));
+                startActivity(new Intent(WelcomeScreen.this, UserRegister.class));
             }
         });
 

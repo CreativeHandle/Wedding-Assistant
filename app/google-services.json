@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "123816078862",
-    "firebase_url": "https://weddingassistant-2aa6d.firebaseio.com",
-    "project_id": "weddingassistant-2aa6d",
-    "storage_bucket": "weddingassistant-2aa6d.appspot.com"
+    "project_number": "951171433249",
+    "firebase_url": "https://wedding-assistance.firebaseio.com",
+    "project_id": "wedding-assistance",
+    "storage_bucket": "wedding-assistance.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123816078862:android:c33bd791a763a464",
+        "mobilesdk_app_id": "1:951171433249:android:c33bd791a763a464",
         "android_client_info": {
           "package_name": "ph.edu.ceu.weddingassistant"
         }
       },
       "oauth_client": [
         {
-          "client_id": "123816078862-g13ufev1fg0vhir2155bf2d08gcmc9ee.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ph.edu.ceu.weddingassistant",
-            "certificate_hash": "1fb425d436451d26839908f5c468387dcf63213d"
-          }
-        },
-        {
-          "client_id": "123816078862-oqst2d4kuv0o0ascuhae50td4scf8o0c.apps.googleusercontent.com",
+          "client_id": "951171433249-3alskf6luavpkkgr27tnildq5moh4igu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB6uJP3SEitVOmf6wh-3FlPcE7uhkLQoTY"
+          "current_key": "AIzaSyDXC510myXyc35LmVt-DoL_Dmc06wXtFKs"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "123816078862-oqst2d4kuv0o0ascuhae50td4scf8o0c.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
