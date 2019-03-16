@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import ph.edu.ceu.weddingassistant.models.Users;
 
-public class EventCoordinatorRegister extends AppCompatActivity {
+public class BusinessRegister extends AppCompatActivity {
 
     EditText email,password,confirm_password,name,phone;
     Button submit;
@@ -116,6 +116,6 @@ public class EventCoordinatorRegister extends AppCompatActivity {
         String id = users.getUid();
         Users user = new Users(email,name,"client",contactNumber);
         userRegistration.child("users").child(id).setValue(user);
-        startActivity(new Intent(EventCoordinatorRegister.this, EventCoordinatorActivity.class));
+        startActivity(new Intent(BusinessRegister.this, BusinessActivity.class));
     }
 }
