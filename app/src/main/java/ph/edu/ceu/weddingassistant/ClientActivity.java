@@ -1,8 +1,11 @@
 package ph.edu.ceu.weddingassistant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +16,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import ph.edu.ceu.weddingassistant.fragments.CateringServiceFragment;
+import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
+
 public class ClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +88,24 @@ public class ClientActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment=null;
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_photographer) {
+            fragment = new ClientPhotographersFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client, fragment);
+            ft.commit();
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_catering) {
+            fragment = new CateringServiceFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client, fragment);
+            ft.commit();
 
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_log_out) {
+            mAuth.getInstance().signOut();
+            startActivity(new Intent(ClientActivity.this, WelcomeScreen.class));
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
