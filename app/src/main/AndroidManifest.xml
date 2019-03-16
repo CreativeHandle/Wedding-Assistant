@@ -9,9 +9,7 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <dist:module dist:instant="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,8 +19,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".RoleSelectActivity"></activity>
         <activity
-            android:name=".BusinessActivity"
-            android:label="@string/title_activity_business"
+            android:name=".ServiceProviderActivity"
+            android:label="@string/title_activity_service_provider"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EventCoordinatorActivity"
@@ -32,6 +30,7 @@
             android:name=".ClientActivity"
             android:label="@string/title_activity_client"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ServiceProviderRegister" />
         <activity android:name=".EventCoordinatorRegister" />
         <activity android:name=".ClientRegister" />
         <activity android:name=".CalendarActivity" />
@@ -41,10 +40,8 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

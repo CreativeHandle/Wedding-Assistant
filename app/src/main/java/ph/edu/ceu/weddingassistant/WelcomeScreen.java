@@ -12,8 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class WelcomeScreen extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private ProgressBar progressBar;
-    private Button btnSignup, btnLogin, btnGuest, btnReset;
+    private Button btnRegister, btnLogin, btnReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +26,13 @@ public class WelcomeScreen extends AppCompatActivity {
             finish();
         }
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        btnSignup = (Button) findViewById(R.id.btn_signup);
+        btnRegister = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
 
         auth = FirebaseAuth.getInstance();
 
-        btnSignup.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WelcomeScreen.this, RoleSelectActivity.class));
@@ -45,7 +43,6 @@ public class WelcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WelcomeScreen.this, CalendarActivity.class));
-                finish();
             }
         });
 
@@ -53,7 +50,6 @@ public class WelcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WelcomeScreen.this, LoginActivity.class));
-                finish();
             }
         });
     }

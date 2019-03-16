@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,8 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Calendar;
 
 import ph.edu.ceu.weddingassistant.models.Users;
 
@@ -86,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                 } else {
                                     Toast.makeText(LoginActivity.this, ("Authentication failed."), Toast.LENGTH_LONG).show();
-
                                 }
                             }
                         });
@@ -114,8 +110,8 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
 
-                if (role.equals("business")){
-                    startActivity(new Intent(LoginActivity.this,BusinessActivity.class));
+                if (role.equals("serviceProvider")){
+                    startActivity(new Intent(LoginActivity.this, ServiceProviderActivity.class));
                     finish();
                 }
             }
@@ -125,9 +121,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         userRef.addValueEventListener(loginListener);
-
     }
-
-    }
-
-
+}

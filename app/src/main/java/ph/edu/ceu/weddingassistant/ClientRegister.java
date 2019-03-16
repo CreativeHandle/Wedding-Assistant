@@ -22,7 +22,7 @@ import ph.edu.ceu.weddingassistant.models.Users;
 
 public class ClientRegister extends AppCompatActivity {
 
-    EditText email,password,confirm_password,name,phone;
+    EditText name,email,password,confirm_password,phone;
     Button submit;
     DatabaseReference userRegistration;
     private FirebaseAuth mAuth;
@@ -30,47 +30,41 @@ public class ClientRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_register);
+        setContentView(R.layout.activity_client_and_event_coordinator_register);
         //Firebase auth
         mAuth = FirebaseAuth.getInstance();
         userRegistration = FirebaseDatabase.getInstance().getReference();
         //EDIT TEXT
-        email = (EditText) findViewById(R.id.txt_user_register_email);
-        password = (EditText) findViewById(R.id.txt_user_register_password);
-        confirm_password = (EditText) findViewById(R.id.txt_user_register_confirm_password);
-        name = (EditText) findViewById(R.id.txt_user_register_full_name);
-        phone = (EditText) findViewById(R.id.txt_user_register_phone);
+        name = (EditText) findViewById(R.id.e_name);
+        email = (EditText) findViewById(R.id.e_email);
+        password = (EditText) findViewById(R.id.e_password);
+        confirm_password = (EditText) findViewById(R.id.e_confirm_password);
+        phone = (EditText) findViewById(R.id.e_phone);
         //Button
-        submit = (Button) findViewById(R.id.btn_user_register_submit);
+        submit = (Button) findViewById(R.id.btn_submit);
         //Onclick
-        onSubmitClick(submit,email,phone,password,confirm_password,name);
+        onSubmitClick(submit,name,email,password,confirm_password,phone);
 
     }
 
     //SUBMIT CLICK
     private void onSubmitClick(Button submit,
+                               final EditText name,
                                final EditText email,
                                final EditText phone,
                                final EditText password,
-                               final EditText confirm_password,
-                               final EditText name){
+                               final EditText confirm_password){
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String fullName_string = name.getText().toString();
                 final String email_string = email.getText().toString();
                 final String password_string = password.getText().toString();
-                final String phone_string = phone.getText().toString();
                 String confirm_password_string = confirm_password.getText().toString();
-                final String fullName_string = name.getText().toString();
-
+                final String phone_string = phone.getText().toString();
 
                 if (TextUtils.isEmpty(fullName_string)) {
                     Toast.makeText(getApplicationContext(), "Enter your name.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(phone_string)) {
-                    Toast.makeText(getApplicationContext(), "Enter contact number.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -84,7 +78,15 @@ public class ClientRegister extends AppCompatActivity {
                     return;
                 }
 
-                //PLEASE CHECK
+                if (TextUtils.isEmpty(password_string)) {
+                    Toast.makeText(getApplicationContext(), "Confirm your password.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(phone_string)) {
+                    Toast.makeText(getApplicationContext(), "Enter contact number.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email_string,password_string).
                         addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -93,8 +95,8 @@ public class ClientRegister extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     sendToDatabase(
                                             task.getResult().getUser(),
-                                            email_string,
                                             fullName_string,
+                                            email_string,
                                             phone_string);
                                 }
                                 else {
@@ -110,12 +112,13 @@ public class ClientRegister extends AppCompatActivity {
 
     //SEND TO DATABASE
     private void sendToDatabase(FirebaseUser users,
-                                String email,
                                 String name,
+                                String email,
                                 String contactNumber){
         String id = users.getUid();
-        Users user = new Users(email,name,"client",contactNumber);
+        Users user = new Users(name,email,"client",contactNumber,null);
         userRegistration.child("users").child(id).setValue(user);
         startActivity(new Intent(ClientRegister.this, ClientActivity.class));
+        finish();
     }
 }

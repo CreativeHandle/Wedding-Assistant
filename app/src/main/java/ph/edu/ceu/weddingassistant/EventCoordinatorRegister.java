@@ -30,30 +30,30 @@ public class EventCoordinatorRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_register);
+        setContentView(R.layout.activity_client_and_event_coordinator_register);
         //Firebase auth
         mAuth = FirebaseAuth.getInstance();
         userRegistration = FirebaseDatabase.getInstance().getReference();
         //EDIT TEXT
-        email = (EditText) findViewById(R.id.txt_user_register_email);
-        password = (EditText) findViewById(R.id.txt_user_register_password);
-        confirm_password = (EditText) findViewById(R.id.txt_user_register_confirm_password);
-        name = (EditText) findViewById(R.id.txt_user_register_full_name);
-        phone = (EditText) findViewById(R.id.txt_user_register_phone);
+        name = (EditText) findViewById(R.id.e_name);
+        email = (EditText) findViewById(R.id.e_email);
+        password = (EditText) findViewById(R.id.e_password);
+        confirm_password = (EditText) findViewById(R.id.e_confirm_password);
+        phone = (EditText) findViewById(R.id.e_phone);
         //Button
-        submit = (Button) findViewById(R.id.btn_user_register_submit);
+        submit = (Button) findViewById(R.id.btn_submit);
         //Onclick
-        onSubmitClick(submit,email,phone,password,confirm_password,name);
+        onSubmitClick(submit,name,email,phone,password,confirm_password);
 
     }
 
     //SUBMIT CLICK
     private void onSubmitClick(Button submit,
+                               final EditText name,
                                final EditText email,
                                final EditText phone,
                                final EditText password,
-                               final EditText confirm_password,
-                               final EditText name){
+                               final EditText confirm_password){
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,8 +93,8 @@ public class EventCoordinatorRegister extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     sendToDatabase(
                                             task.getResult().getUser(),
-                                            email_string,
                                             fullName_string,
+                                            email_string,
                                             phone_string);
                                 }
                                 else {
@@ -110,12 +110,13 @@ public class EventCoordinatorRegister extends AppCompatActivity {
 
     //SEND TO DATABASE
     private void sendToDatabase(FirebaseUser users,
-                                String email,
                                 String name,
+                                String email,
                                 String contactNumber){
         String id = users.getUid();
-        Users user = new Users(email,name,"client",contactNumber);
+        Users user = new Users(name,email,"EventCoordinator",contactNumber,null);
         userRegistration.child("users").child(id).setValue(user);
         startActivity(new Intent(EventCoordinatorRegister.this, EventCoordinatorActivity.class));
+        finish();
     }
 }
