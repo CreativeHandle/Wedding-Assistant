@@ -28,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference doctors;
     private EditText inputName, inputPhone, inputEmail, inputPassword;
-    private Button btnSignIn, btnSignUp;
+    private Button btnLogin, btnSignUp;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
     DatabaseReference userRegistration = FirebaseDatabase.getInstance().getReference();
@@ -43,7 +43,7 @@ public class SignupActivity extends AppCompatActivity {
         doctors = database.getReference("Doctors");
         auth = FirebaseAuth.getInstance();
 
-        btnSignIn = (Button) findViewById(R.id.sign_in_button);
+        btnLogin = (Button) findViewById(R.id.btn_register);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         inputName = (EditText) findViewById(R.id.name);
         inputPhone = (EditText) findViewById(R.id.phone);
@@ -51,7 +51,7 @@ public class SignupActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));

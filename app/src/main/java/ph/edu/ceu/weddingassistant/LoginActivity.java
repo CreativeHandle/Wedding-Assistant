@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         inputEmail = (EditText) findViewById(R.id.txt_email);
         inputPassword = (EditText) findViewById(R.id.txt_password);
-        btnLogin = (Button) findViewById(R.id.btn_login_activity);
+        btnLogin = (Button) findViewById(R.id.btn_login);
 
         auth = FirebaseAuth.getInstance();
 
@@ -105,17 +105,17 @@ public class LoginActivity extends AppCompatActivity {
                 Users user = dataSnapshot.getValue(Users.class);
                 String role = user.role;
                 if (role.equals("client")){
-                    startActivity(new Intent(LoginActivity.this, CalendarActivity.class));
+                    startActivity(new Intent(LoginActivity.this, ClientActivity.class));
                     finish();
                 }
 
                 if (role.equals("eventCoordinator")){
-                    startActivity(new Intent(LoginActivity.this,CalendarActivity.class));
+                    startActivity(new Intent(LoginActivity.this,EventCoordinatorActivity.class));
                     finish();
                 }
 
                 if (role.equals("business")){
-                    startActivity(new Intent(LoginActivity.this,CalendarActivity.class));
+                    startActivity(new Intent(LoginActivity.this,BusinessActivity.class));
                     finish();
                 }
             }
