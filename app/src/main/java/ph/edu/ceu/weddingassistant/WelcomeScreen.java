@@ -27,8 +27,6 @@ public class WelcomeScreen extends AppCompatActivity {
             finish();
         }
 
-
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
@@ -39,7 +37,7 @@ public class WelcomeScreen extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WelcomeScreen.this, UserRegister.class));
+                startActivity(new Intent(WelcomeScreen.this, RoleSelectActivity.class));
             }
         });
 

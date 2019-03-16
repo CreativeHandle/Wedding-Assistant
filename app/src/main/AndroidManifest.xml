@@ -19,10 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RoleSelectActivity"></activity>
         <activity
             android:name=".BusinessActivity"
             android:label="@string/title_activity_business"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EventCoordinatorActivity"
             android:label="@string/title_activity_event_coordinator"
@@ -32,7 +33,7 @@
             android:label="@string/title_activity_client"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EventCoordinatorRegister" />
-        <activity android:name=".UserRegister" />
+        <activity android:name=".ClientRegister" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".LoginActivity" />
         <activity

@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import ph.edu.ceu.weddingassistant.models.Users;
 
-public class UserRegister extends AppCompatActivity {
+public class ClientRegister extends AppCompatActivity {
 
     EditText email,password,confirm_password,name,phone;
     Button submit;
@@ -31,7 +30,7 @@ public class UserRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_register);
+        setContentView(R.layout.activity_client_register);
         //Firebase auth
         mAuth = FirebaseAuth.getInstance();
         userRegistration = FirebaseDatabase.getInstance().getReference();
@@ -117,7 +116,6 @@ public class UserRegister extends AppCompatActivity {
         String id = users.getUid();
         Users user = new Users(email,name,"client",contactNumber);
         userRegistration.child("users").child(id).setValue(user);
-        startActivity(new Intent(UserRegister.this,CalendarActivity.class));
+        startActivity(new Intent(ClientRegister.this, ClientActivity.class));
     }
-
 }
