@@ -1,22 +1,25 @@
 package ph.edu.ceu.weddingassistant.models;
 
 public class Users {
-    public String email;
     public String name;
+    public String email;
     public String role;
     public String contactNumber;
+    public String permit;
 
     public Users(){
     }
 
-    public Users(String email,
-                 String name,
+    public Users(String name,
+                 String email,
                  String role,
-                 String contactNumber) {
-        this.email = email;
+                 String contactNumber,
+                 String permit) {
         this.name = name;
+        this.email = email;
         this.role = role;
         this.contactNumber = contactNumber;
+        this.permit = permit;
     }
 
 }

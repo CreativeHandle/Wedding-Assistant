@@ -18,11 +18,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import ph.edu.ceu.weddingassistant.models.BusinessesInfo;
 import ph.edu.ceu.weddingassistant.models.Users;
 
-public class BusinessRegister extends AppCompatActivity {
+public class ServiceProviderRegister extends AppCompatActivity {
 
-    EditText email,password,confirm_password,name,phone;
+    EditText name,email,password,confirm_password,phone,businesspermit;
     Button submit;
     DatabaseReference userRegistration;
     private FirebaseAuth mAuth;
@@ -30,39 +31,41 @@ public class BusinessRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_register);
+        setContentView(R.layout.activity_service_provider_register);
         //Firebase auth
         mAuth = FirebaseAuth.getInstance();
         userRegistration = FirebaseDatabase.getInstance().getReference();
         //EDIT TEXT
-        email = (EditText) findViewById(R.id.txt_user_register_email);
-        password = (EditText) findViewById(R.id.txt_user_register_password);
-        confirm_password = (EditText) findViewById(R.id.txt_user_register_confirm_password);
-        name = (EditText) findViewById(R.id.txt_user_register_full_name);
-        phone = (EditText) findViewById(R.id.txt_user_register_phone);
+        name = (EditText) findViewById(R.id.e_name);
+        email = (EditText) findViewById(R.id.e_email);
+        password = (EditText) findViewById(R.id.e_password);
+        confirm_password = (EditText) findViewById(R.id.e_confirm_password);
+        phone = (EditText) findViewById(R.id.e_phone);
+        businesspermit = (EditText) findViewById(R.id.e_business_permit);
         //Button
-        submit = (Button) findViewById(R.id.btn_user_register_submit);
+        submit = (Button) findViewById(R.id.btn_submit);
         //Onclick
-        onSubmitClick(submit,email,phone,password,confirm_password,name);
+        onSubmitClick(submit,name,email,password,confirm_password,phone,businesspermit);
 
     }
 
     //SUBMIT CLICK
     private void onSubmitClick(Button submit,
+                               final EditText name,
                                final EditText email,
                                final EditText phone,
                                final EditText password,
                                final EditText confirm_password,
-                               final EditText name){
+                               final EditText businesspermit){
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String fullName_string = name.getText().toString();
                 final String email_string = email.getText().toString();
                 final String password_string = password.getText().toString();
-                final String phone_string = phone.getText().toString();
                 String confirm_password_string = confirm_password.getText().toString();
-                final String fullName_string = name.getText().toString();
-
+                final String phone_string = phone.getText().toString();
+                final String businesspermit_string = businesspermit.getText().toString();
 
                 if (TextUtils.isEmpty(fullName_string)) {
                     Toast.makeText(getApplicationContext(), "Enter your name.", Toast.LENGTH_SHORT).show();
@@ -84,6 +87,11 @@ public class BusinessRegister extends AppCompatActivity {
                     return;
                 }
 
+                if (TextUtils.isEmpty(businesspermit_string)) {
+                    Toast.makeText(getApplicationContext(), "Enter business permit.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //PLEASE CHECK
 
                 mAuth.createUserWithEmailAndPassword(email_string,password_string).
@@ -95,7 +103,8 @@ public class BusinessRegister extends AppCompatActivity {
                                             task.getResult().getUser(),
                                             email_string,
                                             fullName_string,
-                                            phone_string);
+                                            phone_string,
+                                            businesspermit_string);
                                 }
                                 else {
                                     Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
@@ -110,12 +119,16 @@ public class BusinessRegister extends AppCompatActivity {
 
     //SEND TO DATABASE
     private void sendToDatabase(FirebaseUser users,
-                                String email,
                                 String name,
-                                String contactNumber){
+                                String email,
+                                String phone,
+                                String permit){
         String id = users.getUid();
-        Users user = new Users(email,name,"client",contactNumber);
+        Users user = new Users(name,email,"serviceProvider",phone,permit);
+        BusinessesInfo info = new BusinessesInfo(permit);
         userRegistration.child("users").child(id).setValue(user);
-        startActivity(new Intent(BusinessRegister.this, BusinessActivity.class));
+        userRegistration.child("users").child(id).setValue(info);
+        startActivity(new Intent(ServiceProviderRegister.this, ServiceProviderActivity.class));
+        finish();
     }
 }

@@ -13,11 +13,11 @@ public class RoleSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_role_select);
 
-        Button btnClient, btnEventCoordinator, btnBusiness;
+        Button btnClient, btnEventCoordinator, btnServiceProvider;
 
         btnClient = (Button) findViewById(R.id.btn_client);
         btnEventCoordinator = (Button) findViewById(R.id.btn_event_coordinator);
-        btnBusiness = (Button) findViewById(R.id.btn_business);
+        btnServiceProvider = (Button) findViewById(R.id.btn_service_provider);
 
         btnClient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,10 +33,10 @@ public class RoleSelectActivity extends AppCompatActivity {
             }
         });
 
-        btnBusiness.setOnClickListener(new View.OnClickListener() {
+        btnServiceProvider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RoleSelectActivity.this, BusinessRegister.class));
+                startActivity(new Intent(RoleSelectActivity.this, ServiceProviderRegister.class));
             }
         });
     }
