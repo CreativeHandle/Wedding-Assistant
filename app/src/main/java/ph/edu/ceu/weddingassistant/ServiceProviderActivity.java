@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +18,8 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
+import ph.edu.ceu.weddingassistant.fragments.ServiceProviderProfileFragment;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
 public class ServiceProviderActivity extends AppCompatActivity
@@ -37,6 +41,11 @@ public class ServiceProviderActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ServiceProviderProfileFragment fragment = new ServiceProviderProfileFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame_service, fragment);
+        ft.commit();
     }
 
     @Override
@@ -76,9 +85,12 @@ public class ServiceProviderActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        Fragment fragment=null;
         if (id == R.id.nav_service_profile) {
-            // Handle the camera action
+            fragment = new ServiceProviderProfileFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_service, fragment);
+            ft.commit();
         } else if (id == R.id.nav_service_logout) {
             mAuth.getInstance().signOut();
             startActivity(new Intent(ServiceProviderActivity.this, WelcomeScreen.class));

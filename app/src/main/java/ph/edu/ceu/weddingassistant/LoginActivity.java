@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
-            checkUser();
+            checkUser(dialog);
         }
 
 
@@ -86,9 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (task.isSuccessful()) {
-                                    checkUser();
-                                    dialog.hide();
-                                    finish();
+                                    checkUser(dialog);
 
                                 } else {
                                     dialog.hide();
@@ -100,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkUser(){
+    private void checkUser(final ProgressDialog dialog){
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference userRef = rootRef.child("users").child(uid);
@@ -111,16 +109,19 @@ public class LoginActivity extends AppCompatActivity {
                 Users user = dataSnapshot.getValue(Users.class);
                 String role = user.role;
                 if (role.equals("client")){
+                    dialog.hide();
                     startActivity(new Intent(LoginActivity.this, ClientActivity.class));
                     finish();
                 }
 
-                if (role.equals("eventCoordinator")){
+                if (role.equals("EventCoordinator")){
+                    dialog.hide();
                     startActivity(new Intent(LoginActivity.this,EventCoordinatorActivity.class));
                     finish();
                 }
 
                 if (role.equals("serviceProvider")){
+                    dialog.hide();
                     startActivity(new Intent(LoginActivity.this, ServiceProviderActivity.class));
                     finish();
                 }

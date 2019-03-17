@@ -77,7 +77,7 @@ public class WelcomeScreen extends AppCompatActivity {
                     finish();
                 }
 
-                if (role.equals("eventCoordinator")){
+                if (role.equals("EventCoordinator")){
                     startActivity(new Intent(WelcomeScreen.this,EventCoordinatorActivity.class));
                     finish();
                 }

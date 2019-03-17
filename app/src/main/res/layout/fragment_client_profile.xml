@@ -5,62 +5,53 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ClientProfileFragment"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <EditText
-        android:id="@+id/e_email"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
+        android:layout_marginBottom="10dp"
+        android:text="Name" />
 
     <EditText
-        android:id="@+id/e_password"
+        android:id="@+id/c_p_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/e_confirm_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/e_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/e_phone"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Contact Number" />
+
+    <EditText
+        android:id="@+id/c_p_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="number" />
 
     <Button
-        android:id="@+id/btn_update"
+        android:id="@+id/btn_c_p_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update" />
 
     <Button
-        android:id="@+id/btn_submit"
+        android:id="@+id/btn_c_p_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit" />
 
     <Button
-        android:id="@+id/btn_cancel"
+        android:id="@+id/btn_c_p_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel" />

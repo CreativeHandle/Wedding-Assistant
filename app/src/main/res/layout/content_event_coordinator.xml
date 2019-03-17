@@ -8,4 +8,8 @@
     tools:context=".EventCoordinatorActivity"
     tools:showIn="@layout/app_bar_event_coordinator">
 
+    <FrameLayout
+        android:id="@+id/content_frame_event_coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>

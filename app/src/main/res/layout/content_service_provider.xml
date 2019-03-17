@@ -8,4 +8,9 @@
     tools:context=".ServiceProviderActivity"
     tools:showIn="@layout/app_bar_service_provider">
 
+    <FrameLayout
+        android:id="@+id/content_frame_service"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>
