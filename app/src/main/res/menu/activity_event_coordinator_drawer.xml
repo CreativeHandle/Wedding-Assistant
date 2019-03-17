@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_event_coordinator_profile"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Profile" />
         <item
             android:id="@+id/nav_event_coordinator_log_out"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Log Out" />
     </group>
 
 </menu>

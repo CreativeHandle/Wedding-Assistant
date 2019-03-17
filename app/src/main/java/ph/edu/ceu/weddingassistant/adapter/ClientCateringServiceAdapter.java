@@ -38,6 +38,11 @@ public class ClientCateringServiceAdapter extends RecyclerView.Adapter<ClientCat
         holder.text_service_email.setText(info.getService_email());
         holder.text_cost.setText(info.getCost().toString());
         holder.text_contact.setText(info.getContact());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                //
+            }
+        });
     }
 
     @Override
@@ -46,9 +51,11 @@ public class ClientCateringServiceAdapter extends RecyclerView.Adapter<ClientCat
     }
 
     public class CateringViewHolder extends RecyclerView.ViewHolder{
+        public View view;
         TextView text_service_name,text_service_email,text_cost,text_contact;
         public CateringViewHolder(@NonNull View itemView) {
             super(itemView);
+            view = itemView;
             text_service_name = (TextView) itemView.findViewById(R.id.catering_person_name);
             text_service_email = (TextView) itemView.findViewById(R.id.catering_person_email);
             text_cost = (TextView) itemView.findViewById(R.id.catering_cost);
