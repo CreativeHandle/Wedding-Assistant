@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import ph.edu.ceu.weddingassistant.R;
 
-public class CateringServiceFragment extends Fragment {
+public class ClientCateringServiceFragment extends Fragment {
     View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -18,7 +18,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ph.edu.ceu.weddingassistant.fragments.CateringServiceFragment;
+import ph.edu.ceu.weddingassistant.fragments.ClientCateringServiceFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
 
 public class ClientActivity extends AppCompatActivity
@@ -97,7 +97,7 @@ public class ClientActivity extends AppCompatActivity
             ft.commit();
             // Handle the camera action
         } else if (id == R.id.nav_catering) {
-            fragment = new CateringServiceFragment();
+            fragment = new ClientCateringServiceFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame_client, fragment);
             ft.commit();

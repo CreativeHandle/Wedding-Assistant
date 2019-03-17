@@ -32,6 +32,7 @@
                 android:layout_toRightOf="@+id/photographer_person_photo"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
+                android:text="Name"
                 />
 
             <TextView
@@ -40,14 +41,23 @@
                 android:id="@+id/photographer_person_email"
                 android:layout_toRightOf="@+id/photographer_person_photo"
                 android:layout_below="@+id/photographer_person_name"
+                android:text="Name"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/photographer_contact"
+                android:layout_toRightOf="@+id/photographer_person_photo"
+                android:layout_below="@+id/photographer_person_email"
+                android:text="Name"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/photographer_cost"
                 android:layout_toRightOf="@+id/photographer_person_photo"
-                android:layout_alignParentTop="true"
-                android:textSize="30sp"
+                android:layout_below="@+id/photographer_contact"
+                android:text="Name"
                 />
 
         </RelativeLayout>

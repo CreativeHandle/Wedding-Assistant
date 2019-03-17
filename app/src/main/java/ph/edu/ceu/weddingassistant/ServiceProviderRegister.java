@@ -125,9 +125,7 @@ public class ServiceProviderRegister extends AppCompatActivity {
                                 String permit){
         String id = users.getUid();
         Users user = new Users(name,email,"serviceProvider",phone,permit);
-        ServiceProviderInfo info = new ServiceProviderInfo(permit);
         userRegistration.child("users").child(id).setValue(user);
-        userRegistration.child("users").child(id).setValue(info);
         startActivity(new Intent(ServiceProviderRegister.this, ServiceProviderActivity.class));
         finish();
     }

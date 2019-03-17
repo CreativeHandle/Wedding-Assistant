@@ -7,7 +7,7 @@
     android:padding="20dp">
     
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/client_photographer_recycler_view"
+        android:id="@+id/recycler_view_client_photographer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
