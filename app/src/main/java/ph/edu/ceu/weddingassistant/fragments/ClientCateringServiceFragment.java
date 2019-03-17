@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ph.edu.ceu.weddingassistant.R;
 import ph.edu.ceu.weddingassistant.adapter.ClientCateringServiceAdapter;
@@ -79,6 +78,5 @@ public class ClientCateringServiceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Catering");
-        recyclerView.equals(null);
     }
 }
