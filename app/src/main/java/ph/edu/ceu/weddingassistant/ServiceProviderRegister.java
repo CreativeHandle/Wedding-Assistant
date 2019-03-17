@@ -1,5 +1,6 @@
 package ph.edu.ceu.weddingassistant;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -54,7 +55,9 @@ public class ServiceProviderRegister extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ServiceProviderRegister.this, android.R.layout.simple_spinner_item,categories);
         spinner_categories.setAdapter(adapter);
         //Onclick
-        onSubmitClick(submit,name,email,phone,password,confirm_password,businesspermit,spinner_categories,fee);
+        final ProgressDialog dialog = new ProgressDialog(ServiceProviderRegister.this);
+        dialog.setMessage("Please wait...");
+        onSubmitClick(submit,name,email,phone,password,confirm_password,businesspermit,spinner_categories,fee,dialog);
 
     }
 
@@ -67,10 +70,12 @@ public class ServiceProviderRegister extends AppCompatActivity {
                                final EditText confirm_password,
                                final EditText businesspermit,
                                final Spinner spinner,
-                               final EditText fee){
+                               final EditText fee,
+                               final ProgressDialog dialog){
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
                 final String fullName_string = name.getText().toString();
                 final String email_string = email.getText().toString();
                 final String password_string = password.getText().toString();
@@ -82,38 +87,46 @@ public class ServiceProviderRegister extends AppCompatActivity {
                 final Double fee_double = Double.parseDouble(fee_string);
 
                 if (TextUtils.isEmpty(fullName_string)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter your name.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(phone_string)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter contact number.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(email_string)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter e-mail address.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password_string)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter password.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(confirm_password_string)){
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Confirm Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!TextUtils.equals(password_string,confirm_password_string)){
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Password not Match", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(businesspermit_string)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter business permit.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(fee_string)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter your Fee.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -125,6 +138,7 @@ public class ServiceProviderRegister extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
+                                    dialog.hide();
                                     sendToDatabase(
                                             task.getResult().getUser(),
                                             email_string,
