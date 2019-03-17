@@ -27,6 +27,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="disclaimer">By continuing, I accept Wedding Assistant's Term of Service, Community Guidelines and have read the privacy policy.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
