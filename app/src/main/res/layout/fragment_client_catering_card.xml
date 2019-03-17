@@ -16,7 +16,7 @@
             >
 
             <ImageView
-                android:id="@+id/photographer_person_photo"
+                android:id="@+id/catering_person_photo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_alignParentLeft="true"
@@ -28,8 +28,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/photographer_person_name"
-                android:layout_toRightOf="@+id/photographer_person_photo"
+                android:id="@+id/catering_person_name"
+                android:layout_toRightOf="@+id/catering_person_photo"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
                 />
@@ -37,23 +37,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/photographer_person_email"
-                android:layout_toRightOf="@+id/photographer_person_photo"
-                android:layout_below="@+id/photographer_person_name"
+                android:id="@+id/catering_person_email"
+                android:layout_toRightOf="@+id/catering_person_photo"
+                android:layout_below="@+id/catering_person_name"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/photographer_contact"
-                android:layout_toRightOf="@+id/photographer_person_photo"
-                android:layout_below="@+id/photographer_person_email"
+                android:id="@+id/catering_contact"
+                android:layout_toRightOf="@+id/catering_person_photo"
+                android:layout_below="@+id/catering_person_email"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/photographer_cost"
-                android:layout_toRightOf="@+id/photographer_person_photo"
-                android:layout_below="@+id/photographer_contact"
+                android:id="@+id/catering_cost"
+                android:layout_toRightOf="@+id/catering_person_photo"
+                android:layout_below="@+id/catering_contact"
                 />
 
         </RelativeLayout>

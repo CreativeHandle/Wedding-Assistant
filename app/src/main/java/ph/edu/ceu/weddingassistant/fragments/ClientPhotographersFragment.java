@@ -1,7 +1,5 @@
 package ph.edu.ceu.weddingassistant.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,7 +26,7 @@ public class ClientPhotographersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_client_photographers, container, false);
+        mView = inflater.inflate(R.layout.fragment_client_photographer, container, false);
         //RECYCLER
         recyclerView =(RecyclerView) mView.findViewById(R.id.recycler_view_client_photographer);
         recyclerView.setHasFixedSize(true);
@@ -46,6 +44,7 @@ public class ClientPhotographersFragment extends Fragment {
 
         adapter = new ClientPhotographersAdapter(this.getActivity(), infoList);
         recyclerView.setAdapter(adapter);
+
         return mView;
     }
 
