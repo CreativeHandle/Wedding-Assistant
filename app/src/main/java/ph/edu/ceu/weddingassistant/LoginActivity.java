@@ -1,5 +1,6 @@
 package ph.edu.ceu.weddingassistant;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,12 +34,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+        dialog.setMessage("Please wait...");
+
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
             checkUser();
             finish();
         }
+
 
         setContentView(R.layout.activity_login);
 
@@ -51,20 +56,24 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
                 final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter e-mail address.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), "Enter password.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 6) {
+                    dialog.hide();
                     inputPassword.setError("Password length must be more than six characters.");
                     return;
                 }
@@ -78,10 +87,12 @@ public class LoginActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (task.isSuccessful()) {
+                                    dialog.hide();
                                     checkUser();
                                     finish();
 
                                 } else {
+                                    dialog.hide();
                                     Toast.makeText(LoginActivity.this, ("Authentication failed."), Toast.LENGTH_LONG).show();
                                 }
                             }
