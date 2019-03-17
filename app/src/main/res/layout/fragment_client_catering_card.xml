@@ -27,7 +27,7 @@
                 android:src="@drawable/avatar" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/catering_person_name"
                 android:layout_toRightOf="@+id/catering_person_photo"
@@ -36,21 +36,21 @@
                 />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/catering_person_email"
                 android:layout_toRightOf="@+id/catering_person_photo"
                 android:layout_below="@+id/catering_person_name"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/catering_contact"
                 android:layout_toRightOf="@+id/catering_person_photo"
                 android:layout_below="@+id/catering_person_email"
                 />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/catering_cost"
                 android:layout_toRightOf="@+id/catering_person_photo"
