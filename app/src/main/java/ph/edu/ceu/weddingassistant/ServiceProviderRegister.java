@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import ph.edu.ceu.weddingassistant.models.BusinessesInfo;
+import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 import ph.edu.ceu.weddingassistant.models.Users;
 
 public class ServiceProviderRegister extends AppCompatActivity {
@@ -125,7 +125,7 @@ public class ServiceProviderRegister extends AppCompatActivity {
                                 String permit){
         String id = users.getUid();
         Users user = new Users(name,email,"serviceProvider",phone,permit);
-        BusinessesInfo info = new BusinessesInfo(permit);
+        ServiceProviderInfo info = new ServiceProviderInfo(permit);
         userRegistration.child("users").child(id).setValue(user);
         userRegistration.child("users").child(id).setValue(info);
         startActivity(new Intent(ServiceProviderRegister.this, ServiceProviderActivity.class));
