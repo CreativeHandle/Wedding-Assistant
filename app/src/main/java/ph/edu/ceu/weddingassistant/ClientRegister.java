@@ -43,7 +43,7 @@ public class ClientRegister extends AppCompatActivity {
         //Button
         submit = (Button) findViewById(R.id.btn_submit);
         //Onclick
-        onSubmitClick(submit,name,email,password,confirm_password,phone);
+        onSubmitClick(submit,name,email,phone,password,confirm_password);
 
     }
 
@@ -85,6 +85,16 @@ public class ClientRegister extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(phone_string)) {
                     Toast.makeText(getApplicationContext(), "Enter contact number.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(confirm_password_string)){
+                    Toast.makeText(getApplicationContext(), "Confirm Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!TextUtils.equals(password_string,confirm_password_string)){
+                    Toast.makeText(getApplicationContext(), "Password not Match", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

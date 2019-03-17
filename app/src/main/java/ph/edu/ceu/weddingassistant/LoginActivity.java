@@ -33,10 +33,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //DAGDAG
         final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
         dialog.setMessage("Please wait...");
-
+        //DAGDAG
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {

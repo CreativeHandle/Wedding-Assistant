@@ -1,5 +1,7 @@
 package ph.edu.ceu.weddingassistant.fragments;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,14 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ph.edu.ceu.weddingassistant.R;
-
-public class EventCoordinatorProfile extends Fragment {
+public class ServiceProviderProfileFragment extends Fragment {
     View mView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView =  inflater.inflate(R.layout.fragment_event_coordinator_profile, container, false);
+        // Inflate the layout for this fragment
+        mView = inflater.inflate(R.layout.fragment_service_provider_profile, container, false);
 
         return mView;
     }

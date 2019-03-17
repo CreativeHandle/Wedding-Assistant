@@ -84,6 +84,16 @@ public class EventCoordinatorRegister extends AppCompatActivity {
                     return;
                 }
 
+                if(TextUtils.isEmpty(confirm_password_string)){
+                    Toast.makeText(getApplicationContext(), "Confirm Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!TextUtils.equals(password_string,confirm_password_string)){
+                    Toast.makeText(getApplicationContext(), "Password not Match", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //PLEASE CHECK
 
                 mAuth.createUserWithEmailAndPassword(email_string,password_string).
