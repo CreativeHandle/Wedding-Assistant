@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import ph.edu.ceu.weddingassistant.fragments.ClientCateringServiceFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
+import ph.edu.ceu.weddingassistant.fragments.ClientProfileFragment;
 
 public class ClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +32,11 @@ public class ClientActivity extends AppCompatActivity
         setContentView(R.layout.activity_client);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ClientProfileFragment fragment = new ClientProfileFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame_client, fragment);
+        ft.commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +95,6 @@ public class ClientActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment=null;
-
         if (id == R.id.nav_photographer) {
             fragment = new ClientPhotographersFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -106,6 +111,11 @@ public class ClientActivity extends AppCompatActivity
             mAuth.getInstance().signOut();
             startActivity(new Intent(ClientActivity.this, WelcomeScreen.class));
             finish();
+        }else if (id == R.id.nav_client_profile) {
+            fragment = new ClientProfileFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client, fragment);
+            ft.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
