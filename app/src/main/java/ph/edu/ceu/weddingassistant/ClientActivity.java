@@ -15,8 +15,8 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ph.edu.ceu.weddingassistant.fragments.ClientCateringServiceFragment;
-import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
+import ph.edu.ceu.weddingassistant.fragments.CateringServiceFragment;
+import ph.edu.ceu.weddingassistant.fragments.PhotographersFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientProfileFragment;
 
 public class ClientActivity extends AppCompatActivity
@@ -26,13 +26,13 @@ public class ClientActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client);
+        setContentView(R.layout.activity_client_and_event_coordinator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ClientProfileFragment fragment = new ClientProfileFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame_client, fragment);
+        ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
         ft.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -58,7 +58,7 @@ public class ClientActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.client, menu);
+        getMenuInflater().inflate(R.menu.client_and_event_coordinator, menu);
         return true;
     }
 
@@ -84,15 +84,15 @@ public class ClientActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment=null;
         if (id == R.id.nav_photographer) {
-            fragment = new ClientPhotographersFragment();
+            fragment = new PhotographersFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame_client, fragment);
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
             ft.commit();
             // Handle the camera action
         } else if (id == R.id.nav_catering) {
-            fragment = new ClientCateringServiceFragment();
+            fragment = new CateringServiceFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame_client, fragment);
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
             ft.commit();
 
         } else if (id == R.id.nav_log_out) {
@@ -102,7 +102,7 @@ public class ClientActivity extends AppCompatActivity
         }else if (id == R.id.nav_client_profile) {
             fragment = new ClientProfileFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame_client, fragment);
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
             ft.commit();
         }
 

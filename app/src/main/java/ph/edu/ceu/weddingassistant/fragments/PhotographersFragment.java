@@ -25,7 +25,7 @@ import ph.edu.ceu.weddingassistant.adapter.ClientPhotographersAdapter;
 import ph.edu.ceu.weddingassistant.models.FirebaseServiceProviderInfo;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
-public class ClientPhotographersFragment extends Fragment {
+public class PhotographersFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
     ClientPhotographersAdapter adapter;

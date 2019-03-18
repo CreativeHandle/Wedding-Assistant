@@ -16,7 +16,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import ph.edu.ceu.weddingassistant.R;
-import ph.edu.ceu.weddingassistant.fragments.ClientCateringServiceInfoFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersInfoFragment;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
@@ -65,7 +64,7 @@ public class ClientPhotographersAdapter extends RecyclerView.Adapter<ClientPhoto
                                 bundle.putString("photographer_service_permit",info.getPermit());
                                 cpServiceInfo.setArguments(bundle);
                                 FragmentTransaction ft = ((AppCompatActivity)photographerContext).getSupportFragmentManager().beginTransaction();
-                                ft.replace(R.id.content_frame_client, cpServiceInfo);
+                                ft.replace(R.id.content_frame_client_and_event_coordinator, cpServiceInfo);
                                 ft.commit();
                             case DialogInterface.BUTTON_NEGATIVE:
                                 return;

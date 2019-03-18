@@ -2,12 +2,9 @@ package ph.edu.ceu.weddingassistant;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +15,8 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
+import ph.edu.ceu.weddingassistant.fragments.CateringServiceFragment;
+import ph.edu.ceu.weddingassistant.fragments.PhotographersFragment;
 import ph.edu.ceu.weddingassistant.fragments.EventCoordinatorProfileFragment;
 
 public class EventCoordinatorActivity extends AppCompatActivity
@@ -28,9 +26,14 @@ public class EventCoordinatorActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_coordinator);
+        setContentView(R.layout.activity_client_and_event_coordinator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        EventCoordinatorProfileFragment fragment = new EventCoordinatorProfileFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
+        ft.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,11 +43,6 @@ public class EventCoordinatorActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        EventCoordinatorProfileFragment fragment = new EventCoordinatorProfileFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame_event_coordinator, fragment);
-        ft.commit();
     }
 
     @Override
@@ -60,7 +58,7 @@ public class EventCoordinatorActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.event_coordinator, menu);
+        getMenuInflater().inflate(R.menu.client_and_event_coordinator, menu);
         return true;
     }
 
@@ -85,16 +83,27 @@ public class EventCoordinatorActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment=null;
-        if (id == R.id.nav_event_coordinator_profile) {
-            fragment = new EventCoordinatorProfileFragment();
+        if (id == R.id.nav_photographer) {
+            fragment = new PhotographersFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame_event_coordinator, fragment);
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
             ft.commit();
             // Handle the camera action
-        } else if (id == R.id.nav_event_coordinator_log_out) {
+        } else if (id == R.id.nav_catering) {
+            fragment = new CateringServiceFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
+            ft.commit();
+
+        } else if (id == R.id.nav_log_out) {
             mAuth.getInstance().signOut();
             startActivity(new Intent(EventCoordinatorActivity.this, WelcomeScreen.class));
             finish();
+        }else if (id == R.id.nav_client_profile) {
+            fragment = new EventCoordinatorProfileFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
+            ft.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
