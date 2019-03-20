@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import ph.edu.ceu.weddingassistant.fragments.ClientCateringServiceFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientProfileFragment;
+import ph.edu.ceu.weddingassistant.fragments.SortFragment;
 
 public class ClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -101,6 +102,12 @@ public class ClientActivity extends AppCompatActivity
             finish();
         }else if (id == R.id.nav_client_profile) {
             fragment = new ClientProfileFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client, fragment);
+            ft.commit();
+        }
+        else if (id == R.id.nav_client_home) {
+            fragment = new SortFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame_client, fragment);
             ft.commit();

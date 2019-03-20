@@ -7,17 +7,19 @@ public class ServiceProviderInfo {
     public String permit;
     public String category;
     public Double cost;
+    public int thumbnail;
 
     public ServiceProviderInfo(){
     }
 
-    public ServiceProviderInfo(String service_name, String service_email, String contact, String permit, String category, Double cost) {
+    public ServiceProviderInfo(String service_name, String service_email, String contact, String permit, String category, Double cost, int thumbnail) {
         this.service_name = service_name;
         this.service_email = service_email;
         this.contact = contact;
         this.permit = permit;
         this.category = category;
         this.cost = cost;
+        this.thumbnail = thumbnail;
     }
 
     public String getService_name() {
@@ -42,5 +44,9 @@ public class ServiceProviderInfo {
 
     public Double getCost() {
         return cost;
+    }
+
+    public int getThumbnail() {
+        return thumbnail;
     }
 }

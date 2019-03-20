@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import ph.edu.ceu.weddingassistant.R;
 import ph.edu.ceu.weddingassistant.adapter.ClientCateringServiceAdapter;
@@ -43,11 +44,13 @@ public class ClientPhotographersFragment extends Fragment {
 
         final ArrayList<ServiceProviderInfo> infoList = new ArrayList<>();
 
+
         serviceProviderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot data:dataSnapshot.getChildren()){
+
                         final FirebaseServiceProviderInfo info = data.getValue(FirebaseServiceProviderInfo.class);
                         String category = info.f_category;
                         if(category.equals("Photographer")){
@@ -57,7 +60,8 @@ public class ClientPhotographersFragment extends Fragment {
                                     info.f_contact,
                                     info.f_permit,
                                     info.f_category,
-                                    info.f_cost
+                                    info.f_cost,
+                                    1
                             ));
                         }
                     }

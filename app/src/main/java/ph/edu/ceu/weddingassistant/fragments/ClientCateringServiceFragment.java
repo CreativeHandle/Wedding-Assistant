@@ -54,7 +54,8 @@ public class ClientCateringServiceFragment extends Fragment {
                                     info.f_contact,
                                     info.f_permit,
                                     info.f_category,
-                                    info.f_cost
+                                    info.f_cost,
+                                    1
                             ));
                         }
                     }
