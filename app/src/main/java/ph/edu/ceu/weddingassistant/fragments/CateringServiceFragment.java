@@ -23,7 +23,7 @@ import ph.edu.ceu.weddingassistant.adapter.ClientCateringServiceAdapter;
 import ph.edu.ceu.weddingassistant.models.FirebaseServiceProviderInfo;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
-public class ClientCateringServiceFragment extends Fragment {
+public class CateringServiceFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
     ClientCateringServiceAdapter adapter;

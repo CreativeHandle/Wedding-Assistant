@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ClientActivity"
-    tools:showIn="@layout/app_bar_client">
+    tools:showIn="@layout/app_bar_client_and_event_coordinator">
 
     <FrameLayout
-        android:id="@+id/content_frame_client"
+        android:id="@+id/content_frame_client_and_event_coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

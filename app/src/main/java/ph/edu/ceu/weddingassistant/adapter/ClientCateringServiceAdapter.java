@@ -62,7 +62,7 @@ public class ClientCateringServiceAdapter extends RecyclerView.Adapter<ClientCat
                                 bundle.putString("catering_service_permit",info.getPermit());
                                 ccServiceInfo.setArguments(bundle);
                                 FragmentTransaction ft = ((AppCompatActivity)cateringContext).getSupportFragmentManager().beginTransaction();
-                                ft.replace(R.id.content_frame_client, ccServiceInfo);
+                                ft.replace(R.id.content_frame_client_and_event_coordinator, ccServiceInfo);
                                 ft.commit();
                             case DialogInterface.BUTTON_NEGATIVE:
                                 return;

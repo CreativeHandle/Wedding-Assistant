@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
     <include
-        layout="@layout/app_bar_client"
+        layout="@layout/app_bar_client_and_event_coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <android.support.design.widget.NavigationView
@@ -17,6 +17,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_client"
+        app:headerLayout="@layout/nav_header_client_and_event_coordinator"
         app:menu="@menu/activity_client_drawer" />
 </android.support.v4.widget.DrawerLayout>

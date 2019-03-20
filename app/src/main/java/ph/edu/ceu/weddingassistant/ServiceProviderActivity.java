@@ -2,11 +2,8 @@ package ph.edu.ceu.weddingassistant;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,9 +15,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ph.edu.ceu.weddingassistant.fragments.ClientPhotographersFragment;
 import ph.edu.ceu.weddingassistant.fragments.ServiceProviderProfileFragment;
-import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
 public class ServiceProviderActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
