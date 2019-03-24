@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +17,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import ph.edu.ceu.weddingassistant.R;
-import ph.edu.ceu.weddingassistant.adapter.ClientCateringServiceAdapter;
-import ph.edu.ceu.weddingassistant.adapter.ClientPhotographersAdapter;
+import ph.edu.ceu.weddingassistant.adapter.SortAdapter;
 import ph.edu.ceu.weddingassistant.models.FirebaseServiceProviderInfo;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
 public class PhotographersFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
-    ClientPhotographersAdapter adapter;
+    SortAdapter adapter;
     private DatabaseReference mDatabase;
 
     @Override
@@ -44,6 +42,15 @@ public class PhotographersFragment extends Fragment {
 
         final ArrayList<ServiceProviderInfo> infoList = new ArrayList<>();
 
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        adapter = new SortAdapter(getActivity(), infoList);
+        recyclerView.setAdapter(adapter);
+
+        final int photographers_array[] = {
+                R.drawable.photographer1,
+                R.drawable.photographer2,
+                R.drawable.photographer3};
 
         serviceProviderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -51,25 +58,27 @@ public class PhotographersFragment extends Fragment {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot data:dataSnapshot.getChildren()){
 
+                        int rnd1 = new Random().nextInt(photographers_array.length);
+
                         final FirebaseServiceProviderInfo info = data.getValue(FirebaseServiceProviderInfo.class);
                         String category = info.f_category;
+                        String uid = data.getKey();
                         if(category.equals("Photographer")){
                             infoList.add(new ServiceProviderInfo(
+                                    uid,
                                     info.f_service_name,
                                     info.f_service_email,
                                     info.f_contact,
                                     info.f_permit,
                                     info.f_category,
                                     info.f_cost,
-                                    1
+                                    photographers_array[rnd1]
                             ));
                         }
                     }
+                    adapter.notifyDataSetChanged();
                 }
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                adapter = new ClientPhotographersAdapter(getActivity(), infoList);
-                recyclerView.setAdapter(adapter);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

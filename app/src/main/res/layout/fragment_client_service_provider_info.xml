@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
     <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.ClientPhotographersInfoFragment"
+        tools:context=".fragments.ClientServiceProviderInfoFragment"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:padding="20dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:adjustViewBounds="true"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/avatar" />
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/album_cover_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            />
 
         <TextView
-            android:id="@+id/info_catering_name"
+            android:id="@+id/info_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/info_catering_email"
+            android:id="@+id/info_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/info_catering_category"
+            android:id="@+id/info_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -50,7 +50,7 @@
             android:text="Contact Number" />
 
         <TextView
-            android:id="@+id/info_catering_contact"
+            android:id="@+id/info_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -63,7 +63,7 @@
             android:text="Permit" />
 
         <TextView
-            android:id="@+id/info_catering_permit"
+            android:id="@+id/info_permit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -76,20 +76,25 @@
             android:text="Fee" />
 
         <TextView
-            android:id="@+id/info_catering_cost"
+            android:id="@+id/info_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="14sp" />
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/calendarViewPhotographer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:mcv_showOtherDates="all"
+            android:layout_marginBottom="20dp"
             app:mcv_selectionColor="#4286f4"
-            />
+            app:mcv_showOtherDates="all" />
+
+        <Button
+            android:id="@+id/hire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hire" />
 
     </LinearLayout>
 </ScrollView>

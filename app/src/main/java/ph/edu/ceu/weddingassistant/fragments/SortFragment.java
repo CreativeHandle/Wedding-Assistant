@@ -1,13 +1,11 @@
 package ph.edu.ceu.weddingassistant.fragments;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import ph.edu.ceu.weddingassistant.R;
-import ph.edu.ceu.weddingassistant.adapter.ClientCateringServiceAdapter;
 import ph.edu.ceu.weddingassistant.adapter.SortAdapter;
 import ph.edu.ceu.weddingassistant.models.FirebaseServiceProviderInfo;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
@@ -76,8 +73,10 @@ public class SortFragment extends Fragment {
                         int rnd2 = new Random().nextInt(catering_array.length);
                         final FirebaseServiceProviderInfo info = data.getValue(FirebaseServiceProviderInfo.class);
                         String category = info.f_category;
+                        String uid = data.getKey();
                         if(category.equals("Photographer")){
                             infoList.add(new ServiceProviderInfo(
+                                    uid,
                                     info.f_service_name,
                                     info.f_service_email,
                                     info.f_contact,
@@ -89,6 +88,7 @@ public class SortFragment extends Fragment {
                         }
                         if(category.equals("Catering Services")){
                             infoList.add(new ServiceProviderInfo(
+                                    uid,
                                     info.f_service_name,
                                     info.f_service_email,
                                     info.f_contact,
@@ -128,9 +128,11 @@ public class SortFragment extends Fragment {
                                 int rnd2 = new Random().nextInt(catering_array.length);
                                 final FirebaseServiceProviderInfo info = data.getValue(FirebaseServiceProviderInfo.class);
                                 if(info.f_cost<=dValue){
+                                    String uid = dataSnapshot.getKey();
                                     String category = info.f_category;
                                     if(category.equals("Photographer")){
                                         infoList.add(new ServiceProviderInfo(
+                                                uid,
                                                 info.f_service_name,
                                                 info.f_service_email,
                                                 info.f_contact,
@@ -142,6 +144,7 @@ public class SortFragment extends Fragment {
                                     }
                                     if(category.equals("Catering Services")){
                                         infoList.add(new ServiceProviderInfo(
+                                                uid,
                                                 info.f_service_name,
                                                 info.f_service_email,
                                                 info.f_contact,
@@ -167,6 +170,12 @@ public class SortFragment extends Fragment {
         });
 
         return mView;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //you can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle("Service Providers");
     }
 }

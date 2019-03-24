@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,16 +17,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ph.edu.ceu.weddingassistant.R;
-import ph.edu.ceu.weddingassistant.adapter.ClientCateringServiceAdapter;
+import ph.edu.ceu.weddingassistant.adapter.SortAdapter;
 import ph.edu.ceu.weddingassistant.models.FirebaseServiceProviderInfo;
 import ph.edu.ceu.weddingassistant.models.ServiceProviderInfo;
 
 public class CateringServiceFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
-    ClientCateringServiceAdapter adapter;
+    SortAdapter adapter;
     private DatabaseReference mDatabase;
 
     @Override
@@ -40,29 +41,42 @@ public class CateringServiceFragment extends Fragment {
         recyclerView =(RecyclerView) mView.findViewById(R.id.recycler_view_client_catering);
 
         final ArrayList<ServiceProviderInfo> infoList = new ArrayList<>();
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        adapter = new SortAdapter(getActivity(), infoList);
+        recyclerView.setAdapter(adapter);
+
+        final int catering_array[] = {
+                R.drawable.catering1,
+                R.drawable.catering2,
+                R.drawable.catering3};
+
         serviceProviderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot data:dataSnapshot.getChildren()){
+                        int rnd2 = new Random().nextInt(catering_array.length);
+
                         final FirebaseServiceProviderInfo info = data.getValue(FirebaseServiceProviderInfo.class);
+                        String uid = data.getKey();
                         String category = info.f_category;
                         if(category.equals("Catering Services")){
                             infoList.add(new ServiceProviderInfo(
+                                    uid,
                                     info.f_service_name,
                                     info.f_service_email,
                                     info.f_contact,
                                     info.f_permit,
                                     info.f_category,
                                     info.f_cost,
-                                    1
+                                    catering_array[rnd2]
                             ));
                         }
+
                     }
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    adapter = new ClientCateringServiceAdapter(getActivity(), infoList);
-                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
 
             }

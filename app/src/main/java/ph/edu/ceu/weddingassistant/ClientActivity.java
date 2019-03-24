@@ -31,7 +31,7 @@ public class ClientActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ClientProfileFragment fragment = new ClientProfileFragment();
+        SortFragment fragment = new SortFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
         ft.commit();
@@ -109,7 +109,7 @@ public class ClientActivity extends AppCompatActivity
         else if (id == R.id.nav_client_home) {
             fragment = new SortFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame_client, fragment);
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
             ft.commit();
         }
 
