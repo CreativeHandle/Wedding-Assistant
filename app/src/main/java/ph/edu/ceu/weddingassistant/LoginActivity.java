@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 Users user = dataSnapshot.getValue(Users.class);
-                String role = user.role;
+                String role = user.getRole();
                 if (role.equals("client")){
                     dialog.hide();
                     startActivity(new Intent(LoginActivity.this, ClientActivity.class));

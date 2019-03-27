@@ -56,8 +56,8 @@ public class ClientProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users info = dataSnapshot.getValue(Users.class);
-                name.setText(info.name);
-                phone.setText(info.contactNumber);
+                name.setText(info.getName());
+                phone.setText(info.getContactNumber());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

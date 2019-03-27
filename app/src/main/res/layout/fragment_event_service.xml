@@ -3,19 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragments.EventServiceProviderFragment">
+    tools:context=".fragments.EventsServiceProviderFragment">
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:text="Event Information"
             android:textSize="18sp" />
 
@@ -23,37 +24,88 @@
             android:id="@+id/event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Event Title"
             android:layout_below="@id/event"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/event_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location"
             android:layout_below="@id/event_title"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/event_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date"
             android:layout_below="@id/event_location"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/event_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_date"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/client"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/event_date"
-            android:layout_marginBottom="5dp"
+            android:layout_below="@id/event_status"
+            android:layout_marginBottom="10dp"
             android:text="Client Information"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/client_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/client"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/client_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/client_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/client_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/client_email"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="20dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/client_phone_number"
+            android:gravity="center">
+
+
+            <Button
+                android:id="@+id/accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept"
+                android:layout_marginRight="20dp"/>
+
+            <Button
+                android:id="@+id/decline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Decline"
+                android:layout_toRightOf="@+id/accept" />
+        </RelativeLayout>
 
 
     </RelativeLayout>

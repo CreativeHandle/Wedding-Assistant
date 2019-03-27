@@ -79,19 +79,15 @@ public class SortFragment extends Fragment {
 
         TextView set_date = (TextView) mView.findViewById(R.id.select_date);
 
-
         //
         getServiceProviders(mDatabase,photographers_array,catering_array,infoList);
         //
         sortServiceProviders(submit,value,dialog,mDatabase,photographers_array,catering_array,infoList,set_date);
         //
 
-
         setDateText(set_date);
 
-
         return mView;
-
 
     }
     private void setDateText(final TextView set_date){
@@ -102,7 +98,7 @@ public class SortFragment extends Fragment {
                 mDateListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        LocalDate date  = LocalDate.of(year,month,dayOfMonth);
+                        LocalDate date  = LocalDate.of(year,month+1,dayOfMonth);
                         set_date.setText(date.toString());
 
                     }
@@ -207,7 +203,8 @@ public class SortFragment extends Fragment {
             public void onClick(View v) {
                 String myValue = value.getText().toString();
                 final Double dValue = Double.parseDouble(myValue);
-                if(dValue<=1000){
+                excluded_list.clear();
+                if(dValue<1000){
                     dialog.hide();
                     Toast.makeText(getActivity(), "Value must be at least 1000", Toast.LENGTH_SHORT).show();
                     return;

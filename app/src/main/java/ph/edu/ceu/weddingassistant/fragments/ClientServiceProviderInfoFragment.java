@@ -207,9 +207,9 @@ public class ClientServiceProviderInfoFragment extends Fragment
                     //String stringDay = day.getDate().toString();
                     //userSchedule newSched = new userSchedule(stringDay);
                     //rootRef.child("userSchedule").child(uidServiceProvider).push().setValue(newSched);
-
-                    rootRef.child("userEvents").child(uid).push().setValue(events);
-                    rootRef.child("userEvents").child(uidServiceProvider).push().setValue(events);
+                    String key = rootRef.push().getKey();
+                    rootRef.child("userEvents").child(uid).child(key).setValue(events);
+                    rootRef.child("userEvents").child(uidServiceProvider).child(key).setValue(events);
 
                     Toast.makeText(getActivity(), "Request sent!", Toast.LENGTH_SHORT).show();
 

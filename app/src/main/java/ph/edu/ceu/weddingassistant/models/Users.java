@@ -1,11 +1,11 @@
 package ph.edu.ceu.weddingassistant.models;
 
 public class Users {
-    public String name;
-    public String email;
-    public String role;
-    public String contactNumber;
-    public String permit;
+    String name;
+    String email;
+    String role;
+    String contactNumber;
+    String permit;
 
     public Users(){
     }
@@ -22,4 +22,23 @@ public class Users {
         this.permit = permit;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getPermit() {
+        return permit;
+    }
 }

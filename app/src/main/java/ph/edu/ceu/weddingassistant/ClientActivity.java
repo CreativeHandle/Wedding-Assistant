@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 
 import ph.edu.ceu.weddingassistant.fragments.CateringServiceFragment;
+import ph.edu.ceu.weddingassistant.fragments.ClientNotificationsFragment;
 import ph.edu.ceu.weddingassistant.fragments.PhotographersFragment;
 import ph.edu.ceu.weddingassistant.fragments.ClientProfileFragment;
 import ph.edu.ceu.weddingassistant.fragments.SortFragment;
@@ -72,12 +73,22 @@ public class ClientActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment=null;
-        if (id == R.id.nav_photographer) {
+
+        if (id == R.id.nav_notifications) {
+
+            fragment = new ClientNotificationsFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
+            ft.commit();
+
+        }
+        else if (id == R.id.nav_photographer) {
+
             fragment = new PhotographersFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame_client_and_event_coordinator, fragment);
             ft.commit();
-            // Handle the camera action
+
         } else if (id == R.id.nav_catering) {
             fragment = new CateringServiceFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -85,9 +96,11 @@ public class ClientActivity extends AppCompatActivity
             ft.commit();
 
         } else if (id == R.id.nav_log_out) {
+
             mAuth.getInstance().signOut();
             startActivity(new Intent(ClientActivity.this, WelcomeScreen.class));
             finish();
+
         }else if (id == R.id.nav_client_profile) {
             fragment = new ClientProfileFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

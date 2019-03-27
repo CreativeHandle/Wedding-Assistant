@@ -1,8 +1,9 @@
 package ph.edu.ceu.weddingassistant.fragments;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,22 +22,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ph.edu.ceu.weddingassistant.R;
-import ph.edu.ceu.weddingassistant.adapter.NotificationsAdapter;
+import ph.edu.ceu.weddingassistant.adapter.ClientNotificationsAdapter;
 import ph.edu.ceu.weddingassistant.models.UserEvents;
 import ph.edu.ceu.weddingassistant.models.UserNotification;
 
-public class ServiceProviderNotificationsFragment extends Fragment {
+public class ClientNotificationsFragment extends Fragment {
 
     View mView;
     private DatabaseReference mDatabase;
     RecyclerView recyclerView;
-    NotificationsAdapter adapter;
-
+    ClientNotificationsAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_notifications, container, false);
+        mView =  inflater.inflate(R.layout.fragment_notifications, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -48,7 +48,7 @@ public class ServiceProviderNotificationsFragment extends Fragment {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new NotificationsAdapter(getActivity(), notificationList);
+        adapter = new ClientNotificationsAdapter(getActivity(), notificationList);
         recyclerView.setAdapter(adapter);
 
         notificationRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -79,12 +79,6 @@ public class ServiceProviderNotificationsFragment extends Fragment {
         });
 
         return mView;
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Notifications");
     }
 }
