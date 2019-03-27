@@ -130,6 +130,11 @@ public class ServiceProviderRegister extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter your Fee.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(fee_double<=1000){
+                    dialog.hide();
+                    Toast.makeText(getApplicationContext(), "Fee must be at least 1000", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 //PLEASE CHECK
 

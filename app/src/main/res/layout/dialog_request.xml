@@ -20,4 +20,12 @@
         android:inputType="text"
         android:hint="Event Title"
         android:maxLength="64" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Location"
+        android:maxLength="128" />
 </LinearLayout>

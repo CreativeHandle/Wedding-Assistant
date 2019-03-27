@@ -1,6 +1,7 @@
 package ph.edu.ceu.weddingassistant.models;
 
-public class UserEvents {
+public class UserNotification {
+    String childId;
     String clientId;
     String serviceProvider;
     String status;
@@ -8,16 +9,18 @@ public class UserEvents {
     String eventDate;
     String eventLocation;
 
-    public UserEvents(){
-    }
-
-    public UserEvents(String clientId, String serviceProvider, String status, String eventTitle, String eventDate, String eventLocation) {
+    public UserNotification(String childId, String clientId, String serviceProvider, String status, String eventTitle, String eventDate, String eventLocation) {
+        this.childId = childId;
         this.clientId = clientId;
         this.serviceProvider = serviceProvider;
         this.status = status;
         this.eventTitle = eventTitle;
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
+    }
+
+    public String getChildId() {
+        return childId;
     }
 
     public String getClientId() {

@@ -33,12 +33,12 @@ public class CateringServiceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_client_catering, container, false);
+        mView = inflater.inflate(R.layout.fragment_client_services, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference serviceProviderRef = mDatabase.child("serviceProviderInfo");
 
-        recyclerView =(RecyclerView) mView.findViewById(R.id.recycler_view_client_catering);
+        recyclerView =(RecyclerView) mView.findViewById(R.id.recycler_view);
 
         final ArrayList<ServiceProviderInfo> infoList = new ArrayList<>();
 
@@ -92,6 +92,6 @@ public class CateringServiceFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Catering");
+        getActivity().setTitle("Catering Services");
     }
 }

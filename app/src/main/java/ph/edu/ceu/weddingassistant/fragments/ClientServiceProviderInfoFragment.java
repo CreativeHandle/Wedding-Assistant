@@ -55,7 +55,15 @@ public class ClientServiceProviderInfoFragment extends Fragment
 
     DatabaseReference rootRef;
 
-    String m_Text,uid,service_name,service_email,service_cost,service_contact,service_category,service_permit;
+    String event,
+            location,
+            uid,
+            service_name,
+            service_email,
+            service_cost,
+            service_contact,
+            service_category,
+            service_permit;
 
     int service_image;
 
@@ -109,9 +117,7 @@ public class ClientServiceProviderInfoFragment extends Fragment
         getDatesToDisable(new MyCallback() {
             @Override
             public void onCallback(List<CalendarDay> value) {
-
                 widget.addDecorator(new disableDates(value));
-
             }
 
         });
@@ -132,12 +138,13 @@ public class ClientServiceProviderInfoFragment extends Fragment
 
         View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.dialog_request, (ViewGroup) getView(), false);
 
-        final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+        final EditText eventTitle = (EditText) viewInflated.findViewById(R.id.input);
+        final EditText eventLocation = (EditText) viewInflated.findViewById(R.id.location);
         final TextView details = (TextView) viewInflated.findViewById(R.id.details);
 
         builder.setView(viewInflated);
 
-        onButtonClick(button,uid,service_name,widget,builder,input,details);
+        onButtonClick(button,uid,service_name,widget,builder,eventTitle,eventLocation,details,viewInflated);
 
         return mView;
 
@@ -179,28 +186,37 @@ public class ClientServiceProviderInfoFragment extends Fragment
                                final String service_name,
                                final MaterialCalendarView widget,
                                final AlertDialog.Builder builder,
-                               final EditText input,
-                               final TextView details){
+                               final EditText event_title,
+                               final EditText event_location,
+                               final TextView details,
+                               final View viewInflated){
 
         builder.setPositiveButton("Hire", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                event = event_title.getText().toString();
+                location = event_location.getText().toString();
 
-                m_Text = input.getText().toString();
-                CalendarDay day = widget.getSelectedDate();
+                if(!event.isEmpty()&&!location.isEmpty()){
+                    CalendarDay day = widget.getSelectedDate();
 
-                rootRef = FirebaseDatabase.getInstance().getReference();
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                UserEvents events = new UserEvents(uid,m_Text,day.getDate().toString(),uidServiceProvider);
+                    rootRef = FirebaseDatabase.getInstance().getReference();
+                    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    UserEvents events = new UserEvents(uid,uidServiceProvider,"Pending",event,day.getDate().toString(),location);
 
-                String stringDay = day.getDate().toString();
-                userSchedule newSched = new userSchedule(stringDay);
-                rootRef.child("userSchedule").child(uidServiceProvider).push().setValue(newSched);
-                Toast.makeText(getActivity(), "Request Successful!", Toast.LENGTH_SHORT).show();
+                    //String stringDay = day.getDate().toString();
+                    //userSchedule newSched = new userSchedule(stringDay);
+                    //rootRef.child("userSchedule").child(uidServiceProvider).push().setValue(newSched);
 
-                rootRef.child("userEvents").child(uid).push().setValue(events);
-                rootRef.child("userEvents").child(uidServiceProvider).push().setValue(events);
+                    rootRef.child("userEvents").child(uid).push().setValue(events);
+                    rootRef.child("userEvents").child(uidServiceProvider).push().setValue(events);
+
+                    Toast.makeText(getActivity(), "Request sent!", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getActivity(), "Please supply the required fields", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -221,6 +237,12 @@ public class ClientServiceProviderInfoFragment extends Fragment
                 }else {
                     String text = "You are hiring "+ service_name +"  on " + day.getDate();
                     details.setText(text);
+                    event_title.setText("");
+                    event_location.setText("");
+                    if(viewInflated.getParent()!=null){
+                        ((ViewGroup)viewInflated.getParent()).removeView(viewInflated);
+                    }
+                    builder.setView(viewInflated);
                     builder.show();
                 }
             }

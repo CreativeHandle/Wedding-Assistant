@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import ph.edu.ceu.weddingassistant.fragments.ServiceProviderNotificationsFragment;
 import ph.edu.ceu.weddingassistant.fragments.ServiceProviderProfileFragment;
 
 public class ServiceProviderActivity extends AppCompatActivity
@@ -37,7 +38,7 @@ public class ServiceProviderActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ServiceProviderProfileFragment fragment = new ServiceProviderProfileFragment();
+        ServiceProviderNotificationsFragment fragment = new ServiceProviderNotificationsFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame_service, fragment);
         ft.commit();
@@ -53,12 +54,6 @@ public class ServiceProviderActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.service_provider, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -66,11 +61,6 @@ public class ServiceProviderActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -81,7 +71,12 @@ public class ServiceProviderActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment=null;
-        if (id == R.id.nav_service_profile) {
+        if (id == R.id.nav_service_notifications) {
+            fragment = new ServiceProviderNotificationsFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame_service, fragment);
+            ft.commit();
+        }else if (id == R.id.nav_service_profile) {
             fragment = new ServiceProviderProfileFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame_service, fragment);

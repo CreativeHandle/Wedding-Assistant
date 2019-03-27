@@ -36,9 +36,9 @@ public class PhotographersFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference serviceProviderRef = mDatabase.child("serviceProviderInfo");
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_client_photographer, container, false);
+        mView = inflater.inflate(R.layout.fragment_client_services, container, false);
         //RECYCLER
-        recyclerView =(RecyclerView) mView.findViewById(R.id.recycler_view_client_photographer);
+        recyclerView =(RecyclerView) mView.findViewById(R.id.recycler_view);
 
         final ArrayList<ServiceProviderInfo> infoList = new ArrayList<>();
 

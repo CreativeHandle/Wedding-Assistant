@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import ph.edu.ceu.weddingassistant.R;
 
-public class SortByDateFragment extends Fragment {
+public class EventServiceProviderFragment extends Fragment {
 
     View mView;
 
@@ -18,7 +18,7 @@ public class SortByDateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_sort_by_date, container, false);
+        mView = inflater.inflate(R.layout.fragment_event_service, container, false);
 
         return mView;
     }

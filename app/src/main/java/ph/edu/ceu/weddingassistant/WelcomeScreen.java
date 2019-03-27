@@ -50,7 +50,7 @@ public class WelcomeScreen extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WelcomeScreen.this, CalendarActivity.class));
+                //startActivity(new Intent(WelcomeScreen.this, ######));
             }
         });
 

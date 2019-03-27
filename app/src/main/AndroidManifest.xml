@@ -33,7 +33,6 @@
         <activity android:name=".ServiceProviderRegister" />
         <activity android:name=".EventCoordinatorRegister" />
         <activity android:name=".ClientRegister" />
-        <activity android:name=".CalendarActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".WelcomeScreen"
