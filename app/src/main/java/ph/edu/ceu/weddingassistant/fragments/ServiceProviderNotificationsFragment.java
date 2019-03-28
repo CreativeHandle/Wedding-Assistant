@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +32,7 @@ public class ServiceProviderNotificationsFragment extends Fragment {
     private DatabaseReference mDatabase;
     RecyclerView recyclerView;
     NotificationsAdapter adapter;
+    TextView notice;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +45,8 @@ public class ServiceProviderNotificationsFragment extends Fragment {
         DatabaseReference notificationRef = mDatabase.child("userEvents").child(uid);
 
         recyclerView =(RecyclerView) mView.findViewById(R.id.recyclerView);
+
+        notice = mView.findViewById(R.id.notification);
 
         final List<UserNotification> notificationList = new ArrayList<>();
 
@@ -67,6 +71,9 @@ public class ServiceProviderNotificationsFragment extends Fragment {
                                             event.getEventTitle(),
                                             event.getEventDate(),
                                             event.getEventLocation()));
+                        }
+                        if(!notificationList.isEmpty()){
+                            notice.setVisibility(View.INVISIBLE);
                         }
                     adapter.notifyDataSetChanged();
                 }
