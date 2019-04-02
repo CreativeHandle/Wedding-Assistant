@@ -1,14 +1,17 @@
 package ph.edu.ceu.weddingassistant.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +38,9 @@ public class EventCoordinatorProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         mView =  inflater.inflate(R.layout.fragment_event_coordinator_profile, container, false);
 
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Please wait...");
+
         //TEXT
         text_name = mView.findViewById(R.id.e_p_name);
         text_phone = mView.findViewById(R.id.e_p_phone);
@@ -46,6 +52,35 @@ public class EventCoordinatorProfileFragment extends Fragment {
         editTextToggle(false,text_name,text_phone);
         setText(text_name,text_phone);
         buttonsInitial(update,submit,cancel);
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonsOnClick(update,submit,cancel);
+                editTextToggle(true,text_name,text_phone);
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+                editTextToggle(false,text_name,text_phone);
+                buttonsInitial(update,submit,cancel);
+                updateInfo(dialog,text_name,text_phone);
+                setText(text_name,text_phone);
+                dialog.hide();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonsInitial(update,submit,cancel);
+                editTextToggle(false,text_name,text_phone);
+                setText(text_name,text_phone);
+            }
+        });
 
         return mView;
     }
@@ -70,6 +105,29 @@ public class EventCoordinatorProfileFragment extends Fragment {
             }
         });
 
+    }
+
+    private void updateInfo(ProgressDialog dialog,
+                            EditText name,
+                            EditText phone){
+        final String fullName_string = name.getText().toString();
+        final String phone_string = phone.getText().toString();
+
+        if (TextUtils.isEmpty(fullName_string)) {
+            dialog.hide();
+            Toast.makeText(getActivity(), "Enter your name.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(phone_string)) {
+            dialog.hide();
+            Toast.makeText(getActivity(), "Enter contact number.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String uid = FirebaseAuth.getInstance().getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("users").child(uid).child("name").setValue(fullName_string);
+        ref.child("users").child(uid).child("contactNumber").setValue(phone_string);
     }
 
     private void buttonsInitial(Button Update,
